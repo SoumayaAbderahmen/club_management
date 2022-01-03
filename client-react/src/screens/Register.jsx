@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Select from 'react-select'
 import authSvg from '../assests/auth.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
@@ -6,23 +7,34 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 require('dotenv').config();
 process.env.REACT_APP_API_URL='http://localhost:4000/api'
-
+const role_options = [
+  { value: 'student', label: 'Student' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
 const Register = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
+    user_name: '',
     password1: '',
     password2: '',
+    role:'',
+    first_name: '',
+    last_name: '',
+    image: '',
+    niveau: '',
+    phone:'',    
+    cin:'',    
     textChange: 'Sign Up'
   });
 
-  const { name, email, password1, password2, textChange } = formData;
+  const { user_name,role, email,first_name,last_name, image,niveau,cin ,phone, password1, password2, textChange } = formData;
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
   };
   const handleSubmit = e => {
     e.preventDefault();
-    if (name && email && password1) {
+    if (user_name && cin && niveau && role && email && password1) {
 
       if (password1 === password2) {
         setFormData({ ...formData, textChange: 'Submitting' });
@@ -60,7 +72,7 @@ const Register = () => {
         toast.error("Passwords don't matches");
       }
     } else {
-      toast.error('Please fill all fields');
+      toast.error('Please fill all required files fields');
     }
   };
 
@@ -72,7 +84,7 @@ const Register = () => {
         <div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
           <div className='mt-12 flex flex-col items-center'>
             <h1 className='text-2xl xl:text-3xl font-extrabold'>
-              Sign Up for Congar
+              Sign Up for club management app 
             </h1>
 
             <form
@@ -83,10 +95,17 @@ const Register = () => {
                 <input
                   className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white'
                   type='text'
-                  placeholder='Name'
-                  onChange={handleChange('name')}
-                  value={name}
+                  placeholder='user name'
+                  onChange={handleChange('user_name')}
+                  value={user_name}
                 />
+                <input
+                className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white'
+                type='text'
+                placeholder='Name'
+                onChange={handleChange('user_name')}
+                value={first_name}
+              />
                 <input
                   className='w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5'
                   type='email'

@@ -42,7 +42,7 @@ const studentScheama = new mongoose.Schema(
     },
     hashed_password: {
       type: String,
-      required: true
+      trim: true,
     },
     salt: String,
     image: {
