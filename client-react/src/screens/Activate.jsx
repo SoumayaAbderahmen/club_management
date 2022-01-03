@@ -5,7 +5,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
-process.env.REACT_APP_API_URL='http://localhost:5000/api'
+process.env.REACT_APP_API_URL='http://localhost:4000/api'
 const Activate = ({ match }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -32,7 +32,7 @@ const Activate = ({ match }) => {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:5000/api/activation`, {
+      .post(`http://localhost:4000/api/activation`, {
         token
       })
       .then(res => {

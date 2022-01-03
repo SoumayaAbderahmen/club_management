@@ -5,7 +5,7 @@ import axios from 'axios';
 import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 require('dotenv').config();
-process.env.REACT_APP_API_URL='http://localhost:5000/api'
+process.env.REACT_APP_API_URL='http://localhost:4000/api'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,11 +23,11 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (name && email && password1) {
-      console.log('naaaaaaaaaaame', name, email, password1)
+
       if (password1 === password2) {
         setFormData({ ...formData, textChange: 'Submitting' });
         axios
-          .post(`http://localhost:5000/api/register`, {
+          .post(`http://localhost:'4000/api/register`, {
             name,
             email,
             password: password1

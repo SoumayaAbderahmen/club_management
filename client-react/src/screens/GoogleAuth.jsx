@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import axios from 'axios';
-process.env.REACT_APP_API_URL='http://localhost:5000'
+process.env.REACT_APP_API_URL='http://localhost:4000'
 
 const Google = ({ informParent = f => f , clientId, apiUrl}) => {
   console.log(clientId);
